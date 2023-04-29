@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="payment_form_view" model="ir.ui.view">
+            <field name="name">cd.payment.form</field>
+            <field name="model">cd.payment</field>
+            <field name="arch" type="xml">
+                <form string="Payments">
+                    <header>
+                        <button class="btn-danger" name="unlink" type="object" string="Chancel payment"/>
+<!--                        <button class="oe_highlight" name="action_approve" type="object" string="Approve payment"/>-->
+                    </header>
+                     <sheet>
+                         <group>
+                             <field name="contract_id"/>
+                             <field name="client_id" readonly="1"/>
+                             <field name="amount"/>
+                             <field name="left" readonly="1"/>
+                             <field name="payment_date"/>
+                             <field name="approve"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="payment_tree_view" model="ir.ui.view">
+            <field name="name">cd.payment.tree</field>
+            <field name="model">cd.payment</field>
+            <field name="arch" type="xml">
+                <tree string="Payments">
+                    <field name="contract_id"/>
+                    <field name="amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="payment_search_view" model="ir.ui.view">
+            <field name="name">cd.payment.search</field>
+            <field name="model">cd.payment</field>
+            <field name="arch" type="xml">
+                <search string="Payments">
+                    <field name="contract_id"/>
+                    <field name="amount"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="payment_act_window" model="ir.actions.act_window">
+            <field name="name">Payments</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.payment</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Payments.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Payments" id="payment_menu" parent="client_root_menu" action="payment_act_window"/>
+
+    </data>
+</odoo>

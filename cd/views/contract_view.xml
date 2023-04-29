@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="contract_form_view" model="ir.ui.view">
+            <field name="name">cd.contract.form</field>
+            <field name="model">cd.contract</field>
+            <field name="arch" type="xml">
+                <form string="Contract">
+                     <header>
+                         <button name="action_confirm"  string="Confirm"  type="object"  class="oe_highlight" states="draft"/>
+                         <button class="btn-primary" name="unlink" type="object" string="Cancel contract" states="draft" />
+                         <button class="btn-primary" name="draft" type="object" string="Return to draft" states="done"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                     </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <h1>General info</h1>
+                                <field name="contract_num"/>
+                                <field name="client_id"/>
+                                <field name="vehicle_id"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="price"/>
+                                <field name="payment_method"/>
+                                <field name="interest_rate" readonly="1"/>
+                                <field name="total_price" readonly="1"/>
+                                <field name="monthly_payment" readonly="1"/>
+                                <field name="amount_paid"/>
+                            </group>
+                            <group>
+                                <h2>Company data</h2>
+                                <field name="payed" readonly="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="contract_tree_view" model="ir.ui.view">
+            <field name="name">cd.contract.tree</field>
+            <field name="model">cd.contract</field>
+            <field name="arch" type="xml">
+                <tree string="Contract">
+                    <field name="vehicle_id"/>
+                    <field name="client_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="contract_search_view" model="ir.ui.view">
+            <field name="name">cd.contract.search</field>
+            <field name="model">cd.contract</field>
+            <field name="arch" type="xml">
+                <search string="Contract">
+                    <field name="vehicle_id"/>
+                    <field name="client_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="contract_act_window" model="ir.actions.act_window">
+            <field name="name">Contract</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.contract</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Contract.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Contract" id="contract_menu" parent="sales_root_menu" action="contract_act_window"/>
+
+    </data>
+</odoo>

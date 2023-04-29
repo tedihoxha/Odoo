@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="purchase_form_view" model="ir.ui.view">
+            <field name="name">cd.purchase.form</field>
+            <field name="model">cd.purchase</field>
+            <field name="arch" type="xml">
+                <form string="Purchase">
+                    <header>
+                        <button name="create" string="Add the purchased vehicle" type="object" class="btn-primary"/>
+                        <button name="%(cd.vehicle_act_window)d" string="Go to vehicles" type="action"
+                                confirm="Are you sure you want to go to the vehicle module" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <div>
+                             <group>
+                                 <field name="code"/>
+                                <field name="factory_id"/>
+                                <field name="date"/>
+                             </group>
+                            <group>
+                                <field name="vehicle_id"/>
+                                <field name="quantity"/>
+                                <field name="unit_price"/>
+                                <field name="total_price" readonly="1"/>
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="purchase_tree_view" model="ir.ui.view">
+            <field name="name">cd.purchase.tree</field>
+            <field name="model">cd.purchase</field>
+            <field name="arch" type="xml">
+                <tree string="Purchase">
+                     <field name="vehicle_id"/>
+                    <field name="factory_id"/>
+                    <field name="quantity"/>
+                    <field name="unit_price"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="purchase_search_view" model="ir.ui.view">
+            <field name="name">cd.purchase.search</field>
+            <field name="model">cd.purchase</field>
+            <field name="arch" type="xml">
+                <search string="Purchase">
+                    <field name="vehicle_id"/>
+                    <field name="factory_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="purchase_act_window" model="ir.actions.act_window">
+            <field name="name">Purchase</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.purchase</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Purchase.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Purchase" id="purchase_menu" parent="vehicle_root_menu" action="purchase_act_window"/>
+
+    </data>
+</odoo>

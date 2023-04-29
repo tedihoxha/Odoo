@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="inventory_form_view" model="ir.ui.view">
+            <field name="name">cd.inventory.form</field>
+            <field name="model">cd.inventory</field>
+            <field name="arch" type="xml">
+                <form string="Inventory">
+                    <sheet>
+                        <div>
+                            <group>
+                                <group>
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                    <field name="location"/>
+                                    <field name="capacity"/>
+                                    <field name="factory_id"/>
+                                </group>
+                            </group>
+                            <group>
+                                <gropu>
+                                    <field name="total_value"/>
+                                    <field name="total_quantity"/>
+                                </gropu>
+                            </group>
+                        </div>
+                        <notebook>
+                            <page string="Vehicles">
+                                <field name="vehicle_ids" nolabel="1">
+                                    <tree>
+                                        <field name="make"/>
+                                        <field name="model"/>
+                                        <field name="year"/>
+                                        <field name="price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="purchase_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="sold"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <footer>
+                            <group>
+                                <field name="total_value"/>
+                            </group>
+                            <group>
+                                <field name="average_value"/>
+                            </group>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="inventory_tree_view" model="ir.ui.view">
+            <field name="name">cd.inventory.tree</field>
+            <field name="model">cd.inventory</field>
+            <field name="arch" type="xml">
+                <tree string="Inventory">
+                    <field name="name"/>
+                    <field name="location"/>
+                    <field name="vehicle_ids"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="inventory_search_view" model="ir.ui.view">
+            <field name="name">cd.inventory.search</field>
+            <field name="model">cd.inventory</field>
+            <field name="arch" type="xml">
+                <search string="Inventory">
+                    <field name="name"/>
+                    <field name="location"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="inventory_act_window" model="ir.actions.act_window">
+            <field name="name">Inventory</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.inventory</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Inventory.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Inventory" id="inventory_menu" parent="vehicle_root_menu" action="inventory_act_window"/>
+
+    </data>
+</odoo>

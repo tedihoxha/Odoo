@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+        <record id="action_report_purchase" model="ir.actions.report">
+            <field name="name">Purchase Report</field>
+            <field name="model">cd.purchase</field>
+            <field name="report_file">cd.report_purchase</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">cd.report_purchase</field>
+        </record>
+        <template id="report_purchase">
+            <t t-set="data_report_landscape" t-value="True"/>
+            <t t-set="full_width" t-value="True"/>
+            <t t-call="web.html_container">
+                <h3>Purchase Report from <t t-esc="start_date"/> to <t t-esc="end_date"/></h3>
+                <div>
+                    <table class="table table-condensed table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Vehicle</th>
+                                <th>Units</th>
+                                <th>Unit Price</th>
+                                <th>Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="grand_total" t-value="0"/>
+                            <t t-foreach="docs" t-as="purchase">
+                                <tr>
+                                    <td><span><t t-esc="purchase.vehicle_id.name"/></span></td>
+                                    <td><span><t t-esc="purchase.quantity"/></span></td>
+                                    <td><span><t t-esc="purchase.unit_price"/></span></td>
+                                    <td><span><t t-esc="purchase.total_price"/></span></td>
+                                    <t t-set="grand_total" t-value="grand_total+purchase.total_price"/>
+                                </tr>
+                            </t>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3"></td>
+                                <td><span><t t-esc="grand_total"/></span></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

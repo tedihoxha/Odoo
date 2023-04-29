@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <record id="action_report_sale" model="ir.actions.report">
+            <field name="name">Sales Report</field>
+            <field name="model">cd.sales</field>
+            <field name="report_file">cd.report_sale</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">cd.report_sale</field>
+        </record>
+        <template id="report_sale">
+            <t t-set="data_report_landscape" t-value="True"/>
+            <t t-set="full_width" t-value="True"/>
+            <t t-call="web.html_container">
+                <h3>Sales Report from <t t-esc="start_date"/> to <t t-esc="end_date"/></h3>
+                <div>
+                    <table class="table table-condensed table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Salesperson</th>
+                                <th>Customer</th>
+                                <th>Vehicle</th>
+                                <th>Sale Price</th>
+                                <th>Purchase Price</th>
+                                <th>Profit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="grand_total" t-value="0"/>
+                            <t t-foreach="docs" t-as="sale">
+                                <tr>
+                                    <td><span><t t-esc="sale.sale_date"/></span></td>
+                                    <td><span><t t-esc="sale.salesperson_id.name"/></span></td>
+                                    <td><span><t t-esc="sale.client_id.name"/></span></td>
+                                    <td><span><t t-esc="sale.vehicle_id.name"/></span></td>
+                                    <td><span><t t-esc="sale.price"/></span></td>
+                                    <td><span><t t-esc="sale.purchase_price"/></span></td>
+                                    <td><span><t t-esc="sale.profit"/></span></td>
+                                    <t t-set="grand_total" t-value="grand_total+sale.profit"/>
+                                </tr>
+                            </t>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5"></td>
+                                <td><span><t t-esc="grand_total"/></span></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

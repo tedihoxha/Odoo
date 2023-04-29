@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="vehicle_form_view" model="ir.ui.view">
+            <field name="name">cd.vehicle.form</field>
+            <field name="model">cd.vehicle</field>
+            <field name="arch" type="xml">
+                <form string="Vehicle">
+                    <sheet>
+                        <h1>
+                            <field name="rate" widget="priority" class="mr-3"/>
+                        </h1>
+                        <div>
+                            <gropu>
+                                <group>
+                                    <field name="name"/>
+                                    <field name="image"/>
+                                    <field name="make" />
+                                    <field name="model"/>
+                                    <field name="year"/>
+                                    <field name="price"/>
+                                    <field name="dealer_plates"/>
+                                </group>
+                            </gropu>
+                            <group>
+                                <group>
+                                    <field name="factory_id"/>
+                                    <field name="inventory_id"/>
+                                    <field name="unit"/>
+                                    <field name="purchase_price"/>
+                                </group>
+                            </group>
+                        </div>
+                        <footer>
+                            <field name="sold"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="vehicle_tree_view" model="ir.ui.view">
+            <field name="name">cd.vehicle.tree</field>
+            <field name="model">cd.vehicle</field>
+            <field name="arch" type="xml">
+                <tree string="Vehicle">
+                    <field name="name"/>
+                    <field name="make"/>
+                    <field name="model"/>
+                    <field name="year"/>
+                    <field name="price"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="vehicle_search_view" model="ir.ui.view">
+            <field name="name">cd.vehicle.search</field>
+            <field name="model">cd.vehicle</field>
+            <field name="arch" type="xml">
+                <search string="Vehicle">
+                    <field name="name"/>
+                    <field name="make"/>
+                    <field name="model"/>
+                    <field name="year"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="vehicle_act_window" model="ir.actions.act_window">
+            <field name="name">Vehicle</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.vehicle</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Vehicle.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="vehicle_root_menu" name="Vehicle" sequence="20">
+            <menuitem name="Vehicle" id="vehicle_menu" action="vehicle_act_window"/>
+        </menuitem>
+
+    </data>
+</odoo>

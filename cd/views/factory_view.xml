@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="cd_form_view" model="ir.ui.view">
+            <field name="name">cd.factory.form</field>
+            <field name="model">cd.factory</field>
+            <field name="arch" type="xml">
+                <form string="Factory">
+                    <sheet>
+                        <h1>Factory info</h1>
+                        <div>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="location"/>
+                                <field name="inventory_ids"/>
+                            </group>
+                        </div>
+                        <div>
+                            <group>
+                                <field name="vehicle_ids"/>
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="cd_tree_view" model="ir.ui.view">
+            <field name="name">cd.factory.tree</field>
+            <field name="model">cd.factory</field>
+            <field name="arch" type="xml">
+                <tree string="Factory">
+                    <field name="name"/>
+                    <field name="location"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="factory_search_view" model="ir.ui.view">
+            <field name="name">cd.factory.search</field>
+            <field name="model">cd.factory</field>
+            <field name="arch" type="xml">
+                <search string="Factory">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="factory_act_window" model="ir.actions.act_window">
+            <field name="name">Factory</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.factory</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Factory.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Factory" id="factory_menu" parent="vehicle_root_menu" action="factory_act_window"/>
+
+    </data>
+</odoo>

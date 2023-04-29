@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="client_form_view" model="ir.ui.view">
+            <field name="name">cd.client.form</field>
+            <field name="model">cd.client</field>
+            <field name="arch" type="xml">
+                <form string="Client">
+                    <sheet>
+                        <notebook>
+                            <page string="Personal Information">
+                                <group>
+                                    <group>
+                                        <field name="name" required="1" placeholder="e.g. Tedi Hoxha"/>
+                                        <field name="image"/>
+                                        <field name="phone" placeholder="e.g. +355 68.."/>
+                                        <field name="email" placeholder="e.g. fti.com"/>
+                                        <field name="date_of_birth" widget="date"/>
+                                        <field name="driver_license_num" required="1" placeholder="e.g. A990293"/>
+                                    </group>
+                                    <group>
+                                        <field name="address" placeholder="e.g. Jordan Missia street"/>
+                                        <field name="city" placeholder="e.g. Pograced"/>
+                                        <field name="state" placeholder="e.g. Albania"/>
+                                        <field name="zip_code" placeholder="e.g. 1002"/>
+                                    </group>
+                                </group>
+                                <div>
+                                    <group>
+                                         <field name="payment_ids">
+                                             <tree>
+                                                 <field name="payment_date"/>
+                                                 <field name="amount"/>
+                                             </tree>
+                                         </field>
+                                    </group>
+                                </div>
+                            </page>
+                        </notebook>
+                        <footer>
+                            <field name="total_payments" readonly="1"/>
+                            <field name="is_late" readonly="1" attrs="{'invisible': [('is_late', '=', False)]}" widget="statusbar"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="client_tree_view" model="ir.ui.view">
+            <field name="name">cd.client.tree</field>
+            <field name="model">cd.client</field>
+            <field name="arch" type="xml">
+                <tree string="Client">
+                    <field name="name"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="client_search_view" model="ir.ui.view">
+            <field name="name">cd.client.search</field>
+            <field name="model">cd.client</field>
+            <field name="arch" type="xml">
+                <search string="Client">
+                    <field name="name"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="client_act_window" model="ir.actions.act_window">
+            <field name="name">Client</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.client</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Client.
+                </p>
+            </field>
+        </record>
+        <menuitem id="client_root_menu" name="Client" sequence="10">
+            <menuitem name="Client" id="client_menu" action="client_act_window"/>
+        </menuitem>
+    </data>
+</odoo>

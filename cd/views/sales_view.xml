@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sales_form_view" model="ir.ui.view">
+            <field name="name">cd.sales.form</field>
+            <field name="model">cd.sales</field>
+            <field name="arch" type="xml">
+                <form string="Sales">
+                    <header>
+                        <button name="unlink" string="Delete Sale" type="object" class="btn-danger" attrs="{'invisible': [('state', '=', True)]}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="client_id"/>
+                                <field name="contract_id"/>
+                                <field name="vehicle_id"/>
+                                <field name="purchase_price"/>
+                                <field name="profit"/>
+                            </group>
+                            <group>
+                                <field name="state"/>
+                                <field name="salesperson_id"/>
+                                <field name="sale_date"/>
+                                <field name="price"/>
+                                <field name="commission"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="sales_tree_view" model="ir.ui.view">
+            <field name="name">cd.sales.tree</field>
+            <field name="model">cd.sales</field>
+            <field name="arch" type="xml">
+                <tree string="Sales">
+                    <field name="client_id"/>
+                    <field name="vehicle_id"/>
+                    <field name="salesperson_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="sales_search_view" model="ir.ui.view">
+            <field name="name">cd.sales.search</field>
+            <field name="model">cd.sales</field>
+            <field name="arch" type="xml">
+                <search string="Sales">
+                    <field name="client_id"/>
+                    <field name="vehicle_id"/>
+                    <field name="salesperson_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="sales_act_window" model="ir.actions.act_window">
+            <field name="name">Sales</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.sales</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Sales.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="sales_root_menu" name="Sales" sequence="20">
+            <menuitem name="sales" id="sales_menu" action="sales_act_window"/>
+        </menuitem>
+
+    </data>
+</odoo>

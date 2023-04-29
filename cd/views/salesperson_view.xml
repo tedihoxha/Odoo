@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="salesperson_form_view" model="ir.ui.view">
+            <field name="name">cd.salesperson.form</field>
+            <field name="model">cd.salesperson</field>
+            <field name="arch" type="xml">
+                <form string="Sales Agent">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                            <field name="commission_rate"/>
+                            <field name="commission_amount"/>
+                        </group>
+                        <notebook>
+                            <page string="Sales Orders">
+                                <field name="sales_ids">
+                                    <tree>
+                                        <field name="vehicle_id"/>
+                                        <field name="client_id"/>
+                                        <field name="price"/>
+                                        <field name="commission"/>
+                                        <field name="sale_date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="salesperson_tree_view" model="ir.ui.view">
+            <field name="name">cd.salesperson.tree</field>
+            <field name="model">cd.salesperson</field>
+            <field name="arch" type="xml">
+                <tree string="Sales Agent">
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="commission_amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="salesperson_search_view" model="ir.ui.view">
+            <field name="name">cd.salesperson.search</field>
+            <field name="model">cd.salesperson</field>
+            <field name="arch" type="xml">
+                <search string="Sales Agent">
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="salesperson_act_window" model="ir.actions.act_window">
+            <field name="name">Sales Agent</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cd.salesperson</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Sales Agent.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Sales Agent" id="salesperson_menu" parent="staff_root_menu" action="salesperson_act_window"/>
+
+    </data>
+</odoo>
